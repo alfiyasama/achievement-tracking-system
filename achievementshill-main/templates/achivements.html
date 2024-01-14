@@ -1,0 +1,69 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+{% for a in data %}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <h1 class="text-center mb-b p-5">Achivement Tracker Function Working Now</h1>
+        <div class="col-xl-3 col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <div class="d-flex align-items-center">
+                        <div><img src="{{a.val().profile_pic}}" alt="" class="avatar-md rounded-circle img-thumbnail" />
+                        </div>
+                        <div class="flex-1 ms-3">
+                            <p class="font-size-10 mb-1">{{a.val().name}}</p>
+                            <span class="badge badge-soft-success mb-0">{{a.val().user_title}}</span>
+                        </div>
+                    </div>
+                    <div class="mt-3 pt-1">
+                        <p class="text-muted mb-0 "><i class="bi bi-award-fill"></i> <span
+                                class="text-secondary m-2">{{a.val().title}} </span></p>
+                        <p class="text-muted mb-0 mt-2"><i class="bi bi-calendar3"></i> <span
+                                class="text-secondary m-2">{{a.val().date}}</span></p>
+                        <p class="text-muted mb-0 mt-2"><i class="bi bi-trophy-fill"></i><span
+                                class="text-secondary m-2">{{a.val().link}}</span> </p>
+                    </div>
+                    <div class="d-flex gap-2 pt-4">
+                        {% if session["usr"] %}
+                        {% if session["email"] == a.val().author %}
+                        <a type="button" href="/edit/{{a.key()}}" class="btn btn-primary btn-sm w-50"><i
+                            class="bi bi-pencil-square"></i> Edit</a>
+                        {% endif %}
+                        {% endif %}
+                        {% if session["usr"] %}
+                        {% if session["email"] == a.val().author %}
+                        <form method="POST" action="/delete/{{a.key()}}">
+                            <button type="submit" class="btn btn-danger" value="delete">Delete</button>
+                        </form>
+                        {% extends "layout.html" %}
+
+
+  <div class="container">
+    <h1>Welcome to Achievement Tracker</h1>
+    
+    {% if all is none %}
+      <p>No achievements available.</p>
+    {% else %}
+      <ul>
+        {% for achievement in all %}
+          <li><a href="{{ url_for('achivement', id=achievement.key()) }}">{{ achievement.val().title }}</a></li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+    
+    <a href="{{ url_for('logout') }}" class="btn btn-primary">Logout</a>
+  </div>
+
+
+                        {%endif%}
+                        {%endif%}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor%}
+    {% endblock %}

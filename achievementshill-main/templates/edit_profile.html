@@ -1,0 +1,111 @@
+{% extends "layout.html" %} {% block content %}{% for a in data %}
+<form action="/edit_profile/{{a.key()}}" method="post" enctype="multipart/form-data">
+  <div class="container">
+    <div class="main-body">
+      <div class="row ">
+        <div class="col-lg-4">
+          <div class="card">
+            <div class="card-body">
+              <div class="d-flex flex-column align-items-center text-center">
+                <div class="form-right h-100 text-center">
+                  <div><img src="{{a.val().profile_pic}}" alt="" class="avatar-edit rounded-square img-thumbnail " /></div>
+                  <label for="formFile" class="form-label">Upload Profile Picture</label>
+                  <input class="form-control" type="file" accept="image/*" id="formFile" name="profile_pic">
+                </div>
+                <div class="mt-3">
+                  <h4>{{a.val().name}}</h4>
+                  <p class="text-secondary mb-1">
+                    {{a.val().title}}
+                  </p>
+                </div>
+              </div>
+              <hr class="my-4" />
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                  <h6 class="mb-0">
+                    <i class="bi bi-browser-chrome"></i>
+                    Website
+                  </h6>
+                  <span class="text-secondary">
+                    <input type="text" class="form-control" value="{{a.val().website}}" name="website" />
+                  </span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                  <h6 class="mb-0">
+                    <i class="bi bi-github"></i>
+                    Github
+                  </h6>
+                  <span class="text-secondary">
+                    <input type="text" class="form-control" value="{{a.val().github}}" name="github" />
+                  </span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                  <h6 class="mb-0">
+                    <i class="bi bi-twitter"></i>
+                    Twitter
+                  </h6>
+                  <span class="text-secondary">
+                    <input type="text" class="form-control" value="{{a.val().twitter}}" name="twitter" />
+                  </span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                  <h6 class="mb-0">
+                    <i class="bi bi-linkedin"></i>
+                    Linkedin
+                  </h6>
+                  <span class="text-secondary">
+                    <input type="text" class="form-control" value="{{a.val().linedin}}" name="linedin" />
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-8">
+          <div class="card">
+            <div class="card-body">
+              <div class="row mb-3">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Full Name</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                  <input type="text" class="form-control" value="{{a.val().name}}" name="name" />
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Email</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                  <input type="text" class="form-control" value="{{a.val().email}}" disabled />
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Title</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                  <input type="text" class="form-control" value="{{a.val().title}}" name="title" />
+                </div>
+              </div>
+              <div class="row mb-3">
+                <div class="col-sm-3">
+                  <h6 class="mb-0">Age</h6>
+                </div>
+                <div class="col-sm-9 text-secondary">
+                  <input type="text" class="form-control" value="{{a.val().age}}" name="age" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row justify-content-center align-items-center m-5">
+        <div class="col-lg-8"></div>
+        <button type="submit" value="Upadte" class="btn btn-primary">Save</button>
+      </div>
+    </div>
+  </div>
+</form>
+{%endfor%}
+{% endblock %}
